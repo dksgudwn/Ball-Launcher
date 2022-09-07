@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    Score score;
     void Start()
     {
-        score = GetComponent<Score>();
+
     }
 
     void Update()
@@ -18,16 +17,13 @@ public class Ball : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("충돌");
         if(other.gameObject.tag == "Block" || other.gameObject.tag == "Floor")
         {
+            Debug.Log("블록충돌");
             Invoke("DestroyBall",1f);
-        }
-        if(other.gameObject.tag == "Target")
-        {
-            Destroy(other.gameObject);
-            //score.scoreCount++;
         }
     }
 }
